@@ -10,4 +10,8 @@ const router = Router();
 
 router.patch("/:id", authorizedRole(UserRole.admin), adminController.blockUser);
 
+// DELETE /admin/blog/:id - Delete a blog
+
+router.delete("/blogs/:id", authorizedRole(UserRole.admin), adminController.deleteBlog);
+
 export const AdminRoutes = router;

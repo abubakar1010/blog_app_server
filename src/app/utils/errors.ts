@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Error } from "mongoose";
 import { TErrorSource } from "../interface/error.interface";
 import { TGenericErrorResponse } from "../interface/error.interface";

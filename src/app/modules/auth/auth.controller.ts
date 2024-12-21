@@ -26,7 +26,12 @@ const loginUser = asyncHandler(async (req, res) => {
         throw new Error('login failed');
     }
 
-	res.status(201).cookie("token", token).json(
+	const cookieOption = {
+		httpOnly: true,
+		secure: true
+	};
+
+	res.status(201).cookie("token", token, cookieOption).json(
 		new ApiResponse(201, "User is login successfully","")
 	);
 });

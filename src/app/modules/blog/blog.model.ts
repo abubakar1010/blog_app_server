@@ -14,10 +14,10 @@ const blogSchema = new Schema<TBlog>(
 		},
 		author: {
 			type: Schema.Types.ObjectId,
-            ref: "User",
+			ref: "User",
 			required: true,
 		},
-        
+
 		isPublished: {
 			type: Boolean,
 			default: false,
@@ -28,6 +28,5 @@ const blogSchema = new Schema<TBlog>(
 		timestamps: true,
 	}
 );
-
 
 export const Blog = model<TBlog>("Blog", blogSchema);

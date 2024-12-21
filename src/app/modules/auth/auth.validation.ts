@@ -7,6 +7,4 @@ const authValidationSchema = z.object({
 	}),
 });
 
-export {
-    authValidationSchema
-}
+export { authValidationSchema };

@@ -78,8 +78,8 @@ const handleDuplicityError = (error: any): TGenericErrorResponse => {
 };
 
 export {
-    handleZodError,
-    handleValidationError,
-    handleCastError,
-    handleDuplicityError,
-};  
+	handleZodError,
+	handleValidationError,
+	handleCastError,
+	handleDuplicityError,
+};

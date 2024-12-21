@@ -1,3 +1,4 @@
+import QueryBuilder from "../../builder/queryBuilder";
 import ApiError from "../../utils/ApiError";
 import { TBlog } from "./blog.interface";
 import { Blog } from "./blog.model";
@@ -7,7 +8,7 @@ const createBlog = async (blogContent: TBlog) => {
 
 	// check blog already exist or not
 
-	const blog = await Blog.findOne({ $or: [{ title }, { author }] });
+	const blog = await Blog.findOne({ $and: [{ title }, { author }] });
 
 	// if blog already exist throw error
 
@@ -56,4 +57,19 @@ const deleteBlog = async (blogId: string) => {
 	return result;
 };
 
-export const blogService = { createBlog, updateBlog, deleteBlog };
+const getAllBlogs = async (query: Record<string, unknown>) => {
+    const blogQuery = new QueryBuilder(Blog.find().populate("author"), query)
+        .search(['title','content'])
+        .filter()
+        .sort();
+
+    const response = await blogQuery.modelQuery;
+
+	// check if response is empty
+
+	if (response.length <= 0) throw new ApiError(404, "No blogs found");
+
+    return response;
+};
+
+export const blogService = { createBlog, updateBlog, deleteBlog, getAllBlogs };

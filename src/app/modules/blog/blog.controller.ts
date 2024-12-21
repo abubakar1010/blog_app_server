@@ -56,4 +56,30 @@ const deleteBlog = asyncHandler(async (req, res) => {
 	);
 });
 
-export const blogController = { createBlog, updateBlog, deleteBlog };
+const getAllBlogs = asyncHandler(async (req, res) => {
+	// get query from request query
+
+	const query = req.query;
+
+	console.log(query);
+
+	// create blog using blog service
+
+	const result = await blogService.getAllBlogs(query);
+
+	// check if result is empty
+	if (result.length <= 0) {
+		throw new ApiError(400, "failed to get blogs");
+	}
+
+	res.status(200).json(
+		new ApiResponse(200, "Blogs fetched successfully", result)
+	);
+});
+
+export const blogController = {
+	createBlog,
+	updateBlog,
+	deleteBlog,
+	getAllBlogs,
+};

@@ -6,14 +6,7 @@ Welcome to the Blog App Server! This project is a backend server for a blog appl
 
 The live application can be accessed at: [live link](https://blog-app-server-seven-mu.vercel.app)
 
-## Features
 
-- User Registration and Login
-- JWT-based Authentication
-- Blog Creation, Update, and Deletion
-- Admin functionalities to manage users and blogs
-- Error handling and validation
-- Role-based access control
 
 ## Technology Used
 
@@ -27,6 +20,16 @@ The live application can be accessed at: [live link](https://blog-app-server-sev
 - **Bcrypt**: Library to hash passwords
 - **ESLint**: Linting utility for JavaScript and TypeScript
 - **Prettier**: Code formatter
+
+
+## Features
+
+- User Registration and Login
+- JWT-based Authentication
+- Blog Creation, Update, and Deletion
+- Admin functionalities to manage users and blogs
+- Error handling and validation
+- Role-based access control
 
 ## Setup Instructions
 

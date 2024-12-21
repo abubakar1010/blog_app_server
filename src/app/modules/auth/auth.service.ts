@@ -28,9 +28,9 @@ const loginUser = async(loginCredential: TAuth) => {
         throw new Error("invalid email or password");
     }
 
-    const userEmail = user.email
+    const {email, role} = user
 
-    const token = generateAuthToken(userEmail);
+    const token = generateAuthToken(email, role);
     return token;
 }
 

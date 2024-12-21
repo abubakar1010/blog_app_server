@@ -3,6 +3,7 @@ import cors from "cors";
 import cookieParser from 'cookie-parser'
 import globalErrorHandler from "./app/middleware/globalErrorHandler";
 import router from "./app/routes/route";
+import notFoundRoute from "./app/middleware/notFoundRoute";
 export const app = express();
 
 // parser
@@ -25,3 +26,4 @@ app.get("/", (req, res) => {
 
 
 app.use(globalErrorHandler);
+app.use(notFoundRoute)

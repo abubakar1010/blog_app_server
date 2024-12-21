@@ -18,9 +18,7 @@ const createBlog = async (blogContent: TBlog) => {
 	return result;
 };
 
-
 const updateBlog = async (blogId: string, updateContent: Partial<TBlog>) => {
-	
 	// check blog already exist or not
 
 	const blog = await Blog.findById(blogId);
@@ -29,16 +27,15 @@ const updateBlog = async (blogId: string, updateContent: Partial<TBlog>) => {
 
 	if (!blog) throw new ApiError(404, "Blog not found");
 
-	const result = await Blog.findByIdAndUpdate(blogId, updateContent, { new: true });
+	const result = await Blog.findByIdAndUpdate(blogId, updateContent, {
+		new: true,
+	});
 
 	// check if result is empty
 
 	if (!result) throw new ApiError(400, "failed to update blog");
 
-	return result
-
-
+	return result;
 };
 
-
-export const  blogService = { createBlog, updateBlog};
+export const blogService = { createBlog, updateBlog };

@@ -1,3 +1,4 @@
+import { Error } from "mongoose";
 import { TErrorSource } from "../interface/error.interface";
 import { TGenericErrorResponse } from "../interface/error.interface";
 import { ZodError, ZodIssue } from "zod";
@@ -19,3 +20,25 @@ export const handleZodError = (error: ZodError): TGenericErrorResponse => {
         errorSource,
     };
 };
+
+export const handleValidationError = (
+    error: Error.ValidationError,
+): TGenericErrorResponse => {
+    const message = 'Validation Error';
+    const statusCode = 400;
+    const errorSource: TErrorSource = Object.values(error.errors).map(
+        (value: Error.ValidatorError | Error.CastError) => {
+            return {
+                path: value?.path,
+                message: value?.message,
+            };
+        },
+    );
+
+    return {
+        message,
+        statusCode,
+        errorSource,
+    };
+};
+

@@ -12,6 +12,12 @@ const router = Router()
 
 router.post("/", validateRequest(blogValidationSchema), authorizedRole(UserRole.user), blogController.createBlog);
 
+// GET /blogs - Get all blogs
+
 router.patch("/:id", validateRequest(blogUpdateValidationSchema), authorizedRole(UserRole.user), blogController.updateBlog);
+
+// DELETE /blogs/:id - Delete a blog
+
+router.delete("/:id", authorizedRole(UserRole.user), blogController.deleteBlog);
 
 export const blogRoutes = router;

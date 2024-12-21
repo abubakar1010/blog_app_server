@@ -38,4 +38,22 @@ const updateBlog = async (blogId: string, updateContent: Partial<TBlog>) => {
 	return result;
 };
 
-export const blogService = { createBlog, updateBlog };
+const deleteBlog = async (blogId: string) => {
+	// check blog already exist or not
+
+	const blog = await Blog.findById(blogId);
+
+	// if blog not exist throw error
+
+	if (!blog) throw new ApiError(404, "Blog not found");
+
+	const result = await Blog.findByIdAndDelete(blogId);
+
+	// check if result is empty
+
+	if (!result) throw new ApiError(400, "failed to delete blog");
+
+	return result;
+};
+
+export const blogService = { createBlog, updateBlog, deleteBlog };

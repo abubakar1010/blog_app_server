@@ -4,7 +4,6 @@ import { asyncHandler } from "../../utils/asyncHandler";
 import { blogService } from "./blog.service";
 
 const createBlog = asyncHandler(async (req, res) => {
-
 	// get blog content from request body
 
 	const blogContent = req.body;
@@ -22,7 +21,6 @@ const createBlog = asyncHandler(async (req, res) => {
 });
 
 const updateBlog = asyncHandler(async (req, res) => {
-	
 	// get blog content from request body
 
 	const { id } = req.params;
@@ -36,9 +34,26 @@ const updateBlog = asyncHandler(async (req, res) => {
 	// check if result is empty
 	if (!result) throw new ApiError(400, "failed to update blog");
 
-	res.status(201).json(
-		new ApiResponse(201, "Blog updated successfully", result)
+	res.status(200).json(
+		new ApiResponse(200, "Blog updated successfully", result)
 	);
 });
 
-export const blogController = { createBlog, updateBlog };
+const deleteBlog = asyncHandler(async (req, res) => {
+	// get blog content from request body
+
+	const { id } = req.params;
+
+	// create blog using blog service
+
+	const result = await blogService.deleteBlog(id);
+
+	// check if result is empty
+	if (!result) throw new ApiError(400, "failed to delete blog");
+
+	res.status(200).json(
+		new ApiResponse(200, "Blog deleted successfully", result)
+	);
+});
+
+export const blogController = { createBlog, updateBlog, deleteBlog };

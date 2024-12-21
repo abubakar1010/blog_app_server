@@ -7,7 +7,7 @@ export type TUser =  {
     email: string;
     role: TUserRole;
     status: string;
-    isDeleted: boolean;
+    isBlocked: boolean;
 }
 
 

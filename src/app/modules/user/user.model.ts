@@ -29,7 +29,7 @@ const userSchema = new Schema<TUser>(
             required: true,
             default: "inProgress"
         },
-        isDeleted: {
+        isBlocked: {
             type: Boolean,
             default: false,
             required: true,

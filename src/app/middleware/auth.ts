@@ -14,7 +14,7 @@ export const authorizedRole = (...authorizedRole: TUserRole[]) => {
 			const decode = jwt.verify(token, config.jwtSecret as string);
 			req.user = decode as JwtPayload;
 			const userRole = (decode as JwtPayload).role;
-            
+
 			if (!(authorizedRole && authorizedRole.includes(userRole)))
 				throw new ApiError(403, "you are not authorized");
 			next();

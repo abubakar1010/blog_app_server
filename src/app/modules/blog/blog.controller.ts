@@ -29,7 +29,11 @@ const updateBlog = asyncHandler(async (req, res) => {
 
 	// create blog using blog service
 
-	const result = await blogService.updateBlog(id, updateContent, req.user.email);
+	const result = await blogService.updateBlog(
+		id,
+		updateContent,
+		req.user.email
+	);
 
 	// check if result is empty
 	if (!result) throw new ApiError(400, "failed to update blog");

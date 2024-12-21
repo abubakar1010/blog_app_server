@@ -1,13 +1,14 @@
 import QueryBuilder from "../../builder/queryBuilder";
 import ApiError from "../../utils/ApiError";
 import { TUser } from "../user/user.interface";
+import { User } from "../user/user.model";
 import { TBlog } from "./blog.interface";
 import { Blog } from "./blog.model";
 
 const createBlog = async (blogContent: TBlog, email: string) => {
 	// get author id from email
 
-	const getAuthor = await Blog.findOne({ email });
+	const getAuthor = await User.findOne({ email });
 
 	// if author not found throw error
 

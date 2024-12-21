@@ -7,37 +7,35 @@ const registerUSer = asyncHandler(async (req, res) => {
 
 	const result = await userService.createUser(userData);
 
-    if(!result) {
-        throw new Error('User is not created successfully');
-    }
+	if (!result) {
+		throw new Error("User is not created successfully");
+	}
 
 	res.status(201).json(
 		new ApiResponse(201, "user is registered successfully", result)
 	);
 });
 
-
 const loginUser = asyncHandler(async (req, res) => {
 	const loginCredential = req.body;
 
 	const token = await userService.loginUser(loginCredential);
 
-    if(!token) {
-        throw new Error('login failed');
-    }
+	if (!token) {
+		throw new Error("login failed");
+	}
 
 	const cookieOption = {
 		httpOnly: true,
-		secure: true
+		secure: true,
 	};
 
-	res.status(201).cookie("token", token, cookieOption).json(
-		new ApiResponse(201, "User is login successfully","")
-	);
+	res.status(201)
+		.cookie("token", token, cookieOption)
+		.json(new ApiResponse(201, "User is login successfully", { token }));
 });
-
 
 export const authController = {
 	registerUSer,
-	loginUser
+	loginUser,
 };

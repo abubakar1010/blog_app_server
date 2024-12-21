@@ -69,8 +69,8 @@ const globalErrorHandler: ErrorRequestHandler = (
     res.status(statusCode).json({
         success: false,
         message,
-        errorSource,
-        error,
+        statusCode,
+        error: errorSource,
         stack: error.stack,
     });
 };

@@ -29,7 +29,7 @@ const updateBlog = asyncHandler(async (req, res) => {
 
 	// create blog using blog service
 
-	const result = await blogService.updateBlog(id, updateContent);
+	const result = await blogService.updateBlog(id, updateContent, req.user.email);
 
 	// check if result is empty
 	if (!result) throw new ApiError(400, "failed to update blog");
@@ -46,7 +46,7 @@ const deleteBlog = asyncHandler(async (req, res) => {
 
 	// create blog using blog service
 
-	const result = await blogService.deleteBlog(id);
+	const result = await blogService.deleteBlog(id, req.user.email);
 
 	// check if result is empty
 	if (!result) throw new ApiError(400, "failed to delete blog");
@@ -60,8 +60,6 @@ const getAllBlogs = asyncHandler(async (req, res) => {
 	// get query from request query
 
 	const query = req.query;
-
-	console.log(query);
 
 	// create blog using blog service
 

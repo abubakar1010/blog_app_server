@@ -4,7 +4,21 @@ import { TUser } from "../user/user.interface";
 import { TBlog } from "./blog.interface";
 import { Blog } from "./blog.model";
 
-const createBlog = async (blogContent: TBlog) => {
+const createBlog = async (blogContent: TBlog, email: string) => {
+	// get author id from email
+
+	const getAuthor = await Blog.findOne({ email });
+
+	// if author not found throw error
+
+	if (!getAuthor) throw new ApiError(404, "Author not found");
+
+	// add author to blog content
+
+	blogContent.author = getAuthor._id;
+
+	// get title and author from blog content
+
 	const { title, author } = blogContent;
 
 	// check blog already exist or not

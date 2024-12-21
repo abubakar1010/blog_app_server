@@ -22,11 +22,11 @@ let server:Server;
 
 main()
 
-process.on("unhandledRejection", () => {
+process.on("uncaughtException", () => {
     process.exit(1)
 })
 
-process.on("uncaughtException", () => {
+process.on("unhandledRejection", () => {
     if(server){
         server.close(()=>{
             process.exit(1)

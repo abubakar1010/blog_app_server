@@ -4,7 +4,7 @@ Welcome to the Blog App Server! This project is a backend server for a blog appl
 
 ## Live URL
 
-The live application can be accessed at: [https://your-live-url.com](https://your-live-url.com)
+The live application can be accessed at: [live link]([https://your-live-url.com](https://blog-app-server-seven-mu.vercel.app)
 
 ## Features
 

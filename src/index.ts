@@ -8,22 +8,26 @@ let server:Server;
  async function main() {
 	try {
 		const connectionInstance = await mongoose.connect(config.uri as string);
-		console.log(
-			"server successfully connected!! host on",
-			connectionInstance.connection.host
-		);
+		console.log("server is connected to database", connectionInstance.connection.name);
         server = app.listen(config.port, () => {
-            console.log("server is listen on port", config.port)
+            console.log("server is running on port", config.port);
         })
 	} catch (error) {
-		console.log("oops! connection failed", error);
+        console.log("error while connecting to database", error);
+        process.exit(1);
 	}
 }
 
 main()
 
 process.on("uncaughtException", () => {
-    process.exit(1)
+    if(server){
+        server.close(()=>{
+            process.exit(1)
+        })
+    }else{
+        process.exit(1)
+    }
 })
 
 process.on("unhandledRejection", () => {
